@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -6,11 +8,12 @@ const _ =require("lodash");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-const dotenv= require("dotenv").config;
+
 
 
 //db connection
-mongoose.connect(process.env.MONGODB_URI);
+const url=process.env.MONGODB_URI;
+mongoose.connect(url);
 
 //schema
 const itemSchema = {
