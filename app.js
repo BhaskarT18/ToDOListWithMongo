@@ -6,10 +6,11 @@ const _ =require("lodash");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+const dotenv= require("dotenv").config;
 
 
 //db connection
-mongoose.connect("mongodb+srv://generalpurouse:vishal2001@cluster0.eyywv.mongodb.net/todolistDB");
+mongoose.connect(process.env.MONGODB_URI);
 
 //schema
 const itemSchema = {
