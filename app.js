@@ -2,13 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-
+const _ =require("lodash");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
 //db connection
-mongoose.connect("mongodb://localhost:27017/todolistDB");
+mongoose.connect("mongodb+srv://generalpurouse:vishal2001@cluster0.eyywv.mongodb.net/todolistDB");
 
 //schema
 const itemSchema = {
@@ -58,7 +59,7 @@ app.get('/', function (req, res) {
 });
 
 app.get("/:customListName", (req, res) => {
-    const customListName = req.params.customListName;
+    const customListName = _.capitalize(req.params.customListName);
     
     List.findOne({ name: customListName })
         .then((foundList) => {
