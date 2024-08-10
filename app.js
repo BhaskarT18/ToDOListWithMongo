@@ -12,8 +12,8 @@ app.use(express.static("public"));
 
 
 //db connection
-const url=process.env.MONGODB_URI;
-mongoose.connect(url);
+
+mongoose.connect(process.env.MONGODB_URI);
 
 //schema
 const itemSchema = {
